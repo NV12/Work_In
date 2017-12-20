@@ -1,0 +1,133 @@
+<html>
+<head>	
+<script type="text/javascript">
+
+var counter=2;
+var glob=2;
+var del=[];
+var flag=0;
+
+// TODO: The code may show some random error. Testing is not done for each and every test-case
+// The main special case is of first textbox deletion and addition 
+
+function remove(obj) {
+
+	//Pushing the deleted elements(numbers) in del array 
+ 	del.push(Number(obj.slice(-1)));
+	
+	var var1=document.getElementById(obj);
+ 	var var2=var1.previousSibling;
+    var var3=var2.previousSibling;
+    var var4=var3.previousSibling;
+ 	
+ 	document.getElementById('sp1').removeChild(var1);
+ 	document.getElementById('sp1').removeChild(var2);
+ 	document.getElementById('sp1').removeChild(var3);
+ 	document.getElementById('sp1').removeChild(var4);
+ 	
+ 	window.alert("removed");
+}
+
+function add(){
+
+	var foo;
+	// For deleted elements, use the index that has been deleted
+	if(del.length!=0){
+
+		glob=del[0];
+		flag=1;
+		del.shift();
+
+	}
+	else
+	{	
+		glob=counter;
+		counter++;
+	}
+
+	foo=document.getElementById("sp1");
+	var ele=document.createElement("input");
+	ele.setAttribute("type","textbox");
+	ele.setAttribute("id","tb_"+glob);
+			
+	var but1=document.createElement("button");
+	but1.setAttribute("type","button");
+	but1.setAttribute("id","but0_"+glob);
+	but1.onclick=add;
+	but1.innerHTML="+";
+
+	var but2=document.createElement("button");
+	but2.setAttribute("type","button");
+	but2.setAttribute("id","but1_"+glob);
+	// Give function arguments as well !! 
+	but2.onclick=function() { remove(this.id); } ;
+	but2.innerHTML="-";
+	
+	var br=document.createElement("br");
+
+	if(flag==1){
+	
+		console.log("value of glob: "+glob);
+		var x;
+		x=document.getElementById("tb_"+(++glob));
+		console.log('inside flag ',x);
+		
+		glob--;
+		foo.insertBefore(br,x);
+		foo.insertBefore(but2,br);
+		foo.insertBefore(but1,but2);
+		foo.insertBefore(ele,but1);
+		console.log('inside flag and added');
+		flag=0;
+	}
+	else{
+
+		foo.appendChild(br);
+		foo.appendChild(ele);
+		foo.appendChild(but1);
+		foo.appendChild(but2);
+		
+	}	
+}
+
+function addTable(obj){
+
+	var table=document.getElementById('my_table');
+	
+	// For removing the nodes from table that has been removed dynamically
+	while(table.hasChildNodes())
+   		table.removeChild(table.firstChild);
+
+	for(var i=1;i<counter;i++){
+
+		//Skip the deleted elements
+		if(!!(del.indexOf(i)+1))
+			continue;
+		
+		var tr=document.createElement('tr');	
+		var td = document.createElement('td');		
+		var td_val=document.getElementById('tb_'+i).value;
+		
+		td.appendChild(document.createTextNode(td_val));
+		tr.appendChild(td);
+		table.appendChild(tr);
+	}
+}
+
+
+
+</script>
+</head>
+<body>
+<form>
+	<div id="sp1">
+		<input type="textbox" id="tb_1"><button type="button" id="but0_1" onclick=add()>+</button><button type="button" id="but1_1" onclick="remove(this.id);">-</button>
+	</div>
+	<br>
+	<button type="button" id="but_table" onclick="addTable();">Create Table</button>
+
+	<table id="my_table">
+
+</form>
+</body>
+</html>
