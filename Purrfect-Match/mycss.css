@@ -1,0 +1,51 @@
+body{
+	background: url(https://i.pinimg.com/originals/8b/ef/22/8bef22c753dcb6c3a0bb75567287f715.jpg);
+	background-image: center;
+	background-size: cover;
+	background-repeat: none; 
+	font-family: 'Open Sans', sans-serif;
+	color: black;
+}
+
+html{
+	height: 100%;
+	
+}
+
+#content{
+	text-align: center;
+	padding-top: 25%;
+}
+
+
+h1{
+	font-weight: 700;
+	font-size: 5em;
+	font-size: 4.5vw;
+}
+
+h3{
+	/*font-size: 2em;*/
+	/*font-size: 1.5vw;*/
+}
+
+hr{
+	width: 400px;
+	border-top: 1px solid #f8f8f8;
+	border-bottom: 1px solid rgba(0,0,0,0.3);
+}
+
+#id{
+	height: 10px;
+	width: 10px;
+}
+
+@media screen and (max-width: 1024px) {
+    h1{font-size: 4em;}
+    h3 { font-size: 2.5em; }
+}
+
+@media screen and (max-width: 767px) {
+    h1{font-size: 2em;}
+    h3 { font-size: 1.5em; }
+}
