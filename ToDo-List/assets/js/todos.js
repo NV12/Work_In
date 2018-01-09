@@ -5,7 +5,7 @@
 // bcz on works on dynamic addotion of elements as well
 // It will give the effects to the new elements without changing 
 // the code of addition
-// For that, include the required elements in on arguments 
+// For that, include the required elements in on arguments  
 $("ul").on("click","li",function(){ 
 	$(this).toggleClass("completed");
 });
